@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+</head>
+<body>
+
+<script>
+    let socket = new WebSocket("ws://localhost:8080/chat");
+
+    socket.onopen = function(e) {
+      console.log("Conexão estabelecida!");
+      socket.send("Olá, servidor!");
+    };
+
+    socket.onmessage = function(event) {
+      console.log("Mensagem do servidor: " + event.data);
+    };
+
+    socket.onclose = function(event) {
+      console.log("Conexão fechada: " + event.code);
+    };
+
+    socket.onerror = function(error) {
+      console.log("Erro: " + error.message);
+    };
+</script>
+
+</body>
+</html>
